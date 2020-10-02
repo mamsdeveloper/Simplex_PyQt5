@@ -216,7 +216,7 @@ class TheoryWindow(QWidget):
         t_layout.addWidget(t_edit, 0, 0)
         self.setLayout(t_layout)
         self.setFont(QFont('Arial', 12))
-        self.setWindowIcon(QIcon(f'{os.getcwd()}\Assets\App.ico'))
+        self.setWindowIcon(QIcon('App.ico'))
         self.setWindowTitle('Теория')
 
 
@@ -227,11 +227,11 @@ class InfWindow(QWidget):
         title_lable = QLabel('Формат таблицы для открытия')
 
         picture_label_1 = QLabel()
-        picture_1 = QPixmap(f'{os.getcwd()}\Assets\pic1.jpg')
+        picture_1 = QPixmap('pic1.jpg')
         picture_label_1.setPixmap(picture_1)
 
         picture_label_2 = QLabel()
-        picture_2 = QPixmap(f'{os.getcwd()}\Assets\pic2.jpg')
+        picture_2 = QPixmap('pic2.jpg')
         picture_label_2.setPixmap(picture_2)
 
         layout = QGridLayout()
@@ -244,7 +244,7 @@ class InfWindow(QWidget):
         self.setFont(QFont('Arial', 12))
         self.setMaximumSize(640, 480)
         self.setWindowTitle('Формат таблицы для открытия')
-        self.setWindowIcon(QIcon(f'{os.getcwd()}\Assets\App.ico'))
+        self.setWindowIcon(QIcon('App.ico'))
 
 
 class MainWindow(QMainWindow):
@@ -252,7 +252,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         ########
-        f = open(f'{os.getcwd()}\Assets\style.qss', 'r')
+        f = open('style.qss', 'r')
         self.setStyleSheet(f.read())
         f.close()
 
@@ -337,7 +337,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
         self.setMinimumSize(500, 900)
         self.setWindowTitle('Simplex')
-        self.setWindowIcon(QIcon(f'{os.getcwd()}\Assets\App.ico'))
+        self.setWindowIcon(QIcon('App.ico'))
         self.showMaximized()
 
     def OpenTask(self):
