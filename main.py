@@ -12,7 +12,7 @@ from xlwt import Font, Workbook, easyxf
 
 import __main__
 from functions import *
-
+import style
 
 class my_tab_1_class(QWidget):
     def __init__(self):
@@ -253,11 +253,10 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         ########
-        
-        f = open('style.qss', 'r')
-        self.setStyleSheet(f.read())
-        f.close()
-        
+
+        f = style.Style()
+        self.setStyleSheet(f.style)
+
         my_menubar = self.menuBar()
 
         '''Fail'''

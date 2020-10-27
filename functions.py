@@ -9,6 +9,7 @@ Input
 
 # Data
 
+
 def input_data(my_table_1):
     data = []
     mod = 0
@@ -338,7 +339,7 @@ def answer(a, b, points):
     xs_max = [int(i) for i in xs_max]
     f_min = round(f_min, 2)
     f_max = round(f_max, 2)
-    
+
     return xs_min, f_min, min_endless,   xs_max, f_max, max_endless
 
 
@@ -525,3 +526,5 @@ def graph_polygon(graph, points_0, m, w, h):
     qp.end()
 
     return graph
+
+
