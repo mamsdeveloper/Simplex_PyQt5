@@ -1,18 +1,21 @@
-import sys
 import os
+import sys
+
+import __main__
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QIcon, QImage, QPainter, QPixmap
 from PyQt5.QtWidgets import (QAbstractItemView, QAction, QApplication,
-                             QCheckBox, QFileDialog, QFrame, QGridLayout,
-                             QHeaderView, QLabel, QLineEdit, QMainWindow,
-                             QMessageBox, QPushButton, QSlider, QTableWidget,
-                             QTableWidgetItem, QTabWidget, QTextEdit, QWidget)
+                             QCheckBox, QDesktopWidget, QFileDialog, QFrame,
+                             QGridLayout, QHeaderView, QLabel, QLineEdit,
+                             QMainWindow, QMessageBox, QPushButton, QSlider,
+                             QTableWidget, QTableWidgetItem, QTabWidget,
+                             QTextEdit, QWidget)
 from xlrd import open_workbook
 from xlwt import Font, Workbook, easyxf
 
-import __main__
+import style_copy
 from functions import *
-import style
+
 
 class my_tab_1_class(QWidget):
     def __init__(self):
@@ -70,7 +73,7 @@ class my_tab_1_class(QWidget):
         ########
 
         box_layout_1 = QGridLayout()
-        box_layout_1.setSpacing(20)
+        box_layout_1.setSpacing(15)
 
         box_layout_1.setRowStretch(0, 0)
         box_layout_1.setRowStretch(1, 1)
@@ -79,10 +82,10 @@ class my_tab_1_class(QWidget):
 
         box_layout_1.addWidget(input_label, 0, 0)
         box_layout_1.addWidget(table_clear_button, 0, 2)
-        box_layout_1.addWidget(self.my_table_1, 1, 0, 1, 3)
+        box_layout_1.addWidget(self.my_table_1, 1, 0, 1, 0)
         box_layout_1.addWidget(output_label, 2, 0)
         box_layout_1.addWidget(self.output_mod_button, 2, 2)
-        box_layout_1.addWidget(self.my_table_2, 3, 0, 3, 3)
+        box_layout_1.addWidget(self.my_table_2, 3, 0, 1, 0)
 
         self.setLayout(box_layout_1)
 
@@ -143,8 +146,8 @@ class my_tab_2_class(QWidget):
         box_layout_2.addWidget(self.checkbox_vector, 1, 0)
         box_layout_2.addWidget(self.checkbox_points, 2, 0)
         box_layout_2.addWidget(self.checkbox_marking, 3, 0)
-        box_layout_2.addWidget(self.m_slider, 0, 1, 4, 1)
-        box_layout_2.addWidget(self.paint_box, 0, 2, 4, 2)
+        box_layout_2.addWidget(self.m_slider, 0, 1, 0, 1)
+        box_layout_2.addWidget(self.paint_box, 0, 2, 0, 1)
 
         self.setLayout(box_layout_2)
 
@@ -253,10 +256,6 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         ########
-
-        f = style.Style()
-        self.setStyleSheet(f.style)
-
         my_menubar = self.menuBar()
 
         '''Fail'''
@@ -334,12 +333,13 @@ class MainWindow(QMainWindow):
 
         central_widget = QWidget(self)
         central_widget.setLayout(main_layout)
-
+        
         self.setCentralWidget(central_widget)
         self.setMinimumSize(500, 900)
         self.setWindowTitle('Simplex')
         self.setWindowIcon(QIcon('App.ico'))
-        self.showMaximized()
+        f = style_copy.Style(QDesktopWidget().screenGeometry().height())
+        self.setStyleSheet(f.style)
 
     def OpenTask(self):
         filename = QFileDialog.getOpenFileName(
@@ -674,4 +674,5 @@ class MainWindow(QMainWindow):
 
 app = QApplication(sys.argv)
 main_window = MainWindow()
+main_window.showMaximized()
 app.exec_()
