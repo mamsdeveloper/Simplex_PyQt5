@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QTableWidgetItem
-from PyQt5.QtGui import QPainter, QBrush, QPen, QColor, QFont, QPolygon
-from PyQt5.QtCore import Qt, QPoint
+from PySide2.QtWidgets import QTableWidgetItem
+from PySide2.QtGui import QPainter, QBrush, QPen, QColor, QFont, QPolygon
+from PySide2.QtCore import Qt, QPoint
 from math import atan, degrees
 
 '''
@@ -518,7 +518,7 @@ def graph_polygon(graph, points_0, m, w, h):
             points_1.append(i)
             break
 
-    polygon = QPolygon(QPoint(x_0+i[0]*m, y_0-i[1]*m) for i in points_1)
+    polygon = QPolygon([QPoint(x_0+i[0]*m, y_0-i[1]*m) for i in points_1])
 
     qp = QPainter(graph)
     qp.setBrush(QBrush(Qt.blue, Qt.Dense6Pattern))
